@@ -15,27 +15,33 @@ class User:
         print(self.age)
         print(self.is_rewards_member)
         print(self.gold_card_points)
+        return self
 
     def enroll(self):
 
         if self.is_rewards_member == True:
             print(f"{self.first_name}, is already a member.")
-            return False
+            return self
     
         self.is_rewards_member = True
         self.gold_card_points = 200
 
+        return self
+
 
     def spend_points(self, amount):
 
-        if self.gold_card_porints < amount:
+        if self.gold_card_points < amount:
             print("You don't have enough points")
-            return
+            return  False
         
         self.gold_card_points -= amount
+
 
 
 brandon = User("Brandon", "Colangelo", "brandoncancode@gmail.com", 30)
 jane = User("Jane", "Doe", "janedoe@email.com", 29)
 john = User("John", "Stylone", "js412@gmail.com", 44)
 
+john.enroll().spend_points(80)
+john.display_info()
